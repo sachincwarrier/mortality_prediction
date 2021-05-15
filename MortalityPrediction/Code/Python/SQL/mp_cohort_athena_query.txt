@@ -1,0 +1,14 @@
+CREATE EXTERNAL TABLE mimiciii.`mp_hourly_cohort`(
+  `subject_id` string COMMENT '', 
+  `hadm_id` string COMMENT '', 
+  `icustay_id` string COMMENT '', 
+  `hr` string COMMENT '')
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES (
+  "separatorChar" = ","
+)
+STORED AS TEXTFILE
+LOCATION
+  's3://aws-athena-query-results-175252873138-us-east-1/athena/Data/Cohort-hourly'
+TBLPROPERTIES (
+  'classification'='csv')
